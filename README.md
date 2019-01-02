@@ -8,7 +8,9 @@ PHP Class for generating random strings for number, letters, symbols etc
 Call: `Random::make(25);`
 Output: `Uue4X6Rpk3QxDibCTy28ZgOmjwtK9V`
 
-Call: `Random::make(12, [
+Call: `
+
+Random::make(12, [
 
 	        'symbols' => [
 		
