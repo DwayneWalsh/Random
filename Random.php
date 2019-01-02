@@ -13,7 +13,7 @@
 class Random
 {
     
-    public static function make($count = '10', $make = [
+    public static function make($count = 10, $make = [
         'symbols' => [
             'letters' => [
                 'uppercase' => true,
@@ -48,21 +48,24 @@ class Random
         }
 
         if(!empty($mk)) {
-            $return = '';
+            $return = str_shuffle($mk);
             $string = md5(uniqid());
             $string = substr(str_shuffle(md5($string)), 0, $make['prefix_length']);
-            $random = substr(str_shuffle($mk), 0, 30);
+            $random = substr(str_shuffle($mk), 0, $count);
 
             if($make['options']['prefix']) {
+
                 $return .= $string.$make['prefix'];
             }
 
             $return .= $random;
 
+            $return = substr(str_shuffle($return), 0, $count);
+
             return ($make['options']['uppercaseAll'] ? strtoupper($return) : $return);
 
         } else if(ini_get("display_errors") === true) {
-            throw new Exception(__CLASS__." ".__FUNCTION__." function Error. Neither (
+            throw new \Exception(__CLASS__." ".__FUNCTION__." function Error. Neither (
                 ".implode(", ", array_keys($make)).") were set to true");
         }
     }
