@@ -27,7 +27,9 @@ class Random
         'options' => [
             'prefix' => false,
             'uppercaseAll' => false
-        ]
+        ],
+        'prefix'        => '---',
+        'prefix_length' => 5
     ]) 
     {
         $mk = '';
@@ -49,12 +51,12 @@ class Random
 
         if(!empty($mk)) {
             $return = '';
-            $string = md5(time()*rand(000,999)+microtime());
-            $string = substr(str_shuffle(md5($string)), 0, 5);
+            $string = md5(uniqid());
+            $string = substr(str_shuffle(md5($string)), 0, $make['prefix_length']);
             $random = substr(str_shuffle($mk), 0, 30);
 
             if($make['options']['prefix']) {
-                $return .= $string.'-';
+                $return .= $string.$make['prefix'];
             }
 
             $return .= $random;
