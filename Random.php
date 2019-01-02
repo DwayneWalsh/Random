@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Helpers;
-
 /**
  * Random String Generator
  *
